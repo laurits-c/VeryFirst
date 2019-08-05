@@ -92,11 +92,12 @@ def obtener_num_amigos():
     return amigos
 
 def obtener_datos():
-    n = obtener_nombre()
     e = obtener_edad()
     (em, ec) = obtener_estatura()
+    s = obtener_sexo()
+    p= obtener_pais()
     na = obtener_num_amigos()
-    return (n,e,em,ec,na)
+    return (e,em,ec,s,p,na)
 
 def mostrar_perfil(datos):
     print("--------------------------------------------------")
@@ -140,21 +141,20 @@ def msj_grupal(datos):
 def salir(datos):
     print("Gracias, vuelva prontos")
 
-def msj_amigos(datos):
-    print("un mensaje")
-
 def actualizar_perfil(datos):
     print("--------------------------------------------------")
-    print("Vamos a actualizar tus datos:")
-    (n,e,em,ec,na)=obtener_datos()
+    print(datos["Nombre"], "Vamos a actualizar tus datos:")
+    (e,em,ec,s,p,na)=obtener_datos()
     update = {
-        "Nombre": n,
         "Edad": e,
         "Estaturam": em,
         "Estaturacm": ec,
+        "Sexo": s,
+        "Pais":  p,
         "Amigos": na,
         "AmigosMsj": None
     }
+
     datos.update(update)
     print("--------------------------------------------------")
     return datos
@@ -167,7 +167,6 @@ def switch_demo(opcion, datos):
         3: mostrar_perfil,
         4: actualizar_perfil
     }
-    # Get the function from switcher dictionary
-    func = switcher.get(opcion, lambda: "Invalid month")
+    func = switcher.get(opcion)
     return func(datos)
 

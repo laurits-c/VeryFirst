@@ -1,5 +1,6 @@
 import Funciones as fnc
 import Archivos as arch
+
 datos ={}
 fnc.mostrar_bienvenida()
 nombre = fnc.obtener_nombre()
@@ -40,14 +41,15 @@ while(menu > 0 and menu < 5):
     #Antes de salir, debe guardar el archivo
     if menu == 0:
         print("Has decidido salir.")
-        print("<<Guardando perfil en ", nombre + ".user>>")
-        arch.guardar(datos, nombre)
-        print("<<Archivo", nombre + ".user", "guardado>>")
+        print("<<Guardando perfil en ", datos["Nombre"] + ".user>>")
+        arch.guardar(datos)
+        print("<<Archivo", datos["Nombre"] + ".user", "guardado>>")
     #Ejecutamos la función, en el update, devuelve datos así que lo asignamos a una variable
     aux = fnc.switch_demo(menu, datos)
     #Si ya ejecuto el update, debe mostrar los datos actualizados
     if menu == 4:
         print("Tus datos actualizados son")
-        fnc.mostrar_perfil(aux)
+        datos.update(aux)
+        fnc.mostrar_perfil(datos)
 
 
